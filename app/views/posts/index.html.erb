@@ -1,0 +1,10 @@
+<h2 style="color:white">Top Posts:</h2>
+<% @posts.each do |post| %>
+	<div class = "well well-small">
+		<p><h4><%= link_to post.title, ext_url(post.url) %></h4>
+			<p><u>Description:</u> <%= post.body %></p>
+			<i>Posted by</i> <%= link_to post.user.name, "/users/#{post.user.id}" %> on <%= disp_date(post.created_at) %></p>
+		<p><i><%= link_to "View #{post.comments.count} comments", "/posts/#{post.id}" %></i><p>
+	</div>
+<% end %>
+

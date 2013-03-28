@@ -1,0 +1,16 @@
+<ul class="nav">
+	<li>
+		<%= link_to "Home", root_path, class: "btn" %>
+	</li>
+    <li>
+    	<%= link_to 'View Site Users', users_path , class: "btn" %>
+    </li>
+	<% if logged_in? %>
+		<li><%= link_to 'New Post', new_post_path, class: "btn" %></li>
+		<li><%= link_to 'Logout', logout_path , class: "btn" %></li>
+	<% else %>
+		<li><%= link_to 'Login', login_path , class: "btn" %></li>
+		<li><%= link_to 'Register', register_path , class: "btn" %></li>
+	<% end %>
+</ul>
+

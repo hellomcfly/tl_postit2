@@ -1,0 +1,18 @@
+<h3 style="color:white">It's your post, so make it personal. </h3>
+
+<%= render 'shared/errors', obj: @post %>
+
+<div class= "well well-small">
+<%= form_for @post do |f| %>
+	<%= f.label :title %>
+	<%= f.text_field :title %>
+	<br>
+	<%= f.label :body %>
+	<%= f.text_area :body, rows: 5 %>
+	<br>
+	<%= f.label "Associated URL:" %>
+	<%= f.url_field :url %>
+	<br>
+	<%= f.submit class: "btn btn-primary" %>
+<% end %>
+</div>

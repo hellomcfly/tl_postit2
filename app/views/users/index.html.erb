@@ -1,0 +1,8 @@
+<h2 style="color:white">This site's users:</h2>
+<div class= "well well-small">
+	<ul>
+		<% @users.each do |user| %>
+			<li><%= link_to user.name, "/users/#{user.id}" %></li>
+		<% end %>
+	</ul>
+</div>

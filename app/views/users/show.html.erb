@@ -1,0 +1,18 @@
+<h2 style="color:white">User: <%= @user.name %></h2>
+<h6 style="color:white">Member since: <%=@user.created_at %></h6>
+<div class= "well well-small">
+	<h5>All User Posts:</h5>
+	<ol>
+		<% @posts.each do |post| %>
+			<li><%= link_to post.title, "/post/#{post.id}"%></li>
+		<% end %>	
+	</ol>
+</div>>
+<div class= "well well-small">
+	<h5>All User Comments:</h5>
+	<ol>
+		<% @comments.each do |comment| %>
+			<li><%= comment.body %> - <%= link_to comment.post.title, "/posts/#{comment.post.id}" %></li>
+		<% end %>	
+	</ol>
+</div>

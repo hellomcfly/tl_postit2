@@ -1,0 +1,11 @@
+<h2 style="color:white">Log In</h2>
+<%= form_tag 'login' do %>
+	<div class = "well well-small">
+		<%= label_tag "Username" %>
+		<%= text_field_tag :name %>
+		<%= label_tag :password %>
+		<%= password_field_tag :password %>
+	<br>
+	<%= submit_tag "Login", class: "btn btn-primary" %>
+	</div>
+<% end %>

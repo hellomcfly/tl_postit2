@@ -1,0 +1,11 @@
+<h2 style="color: white">Create New User</h2>
+<%= render 'shared/errors', obj: @user %>
+<div class="well well-small">
+	<%= form_for @user do |f| %>
+		<%= f.label "Username" %>
+		<%= f.text_field :name %> <br>
+		<%= f.label :password %>
+		<%= f.password_field :password %> <br>
+		<%= f.submit "Register", class: "btn btn-success" %>
+	<% end %>
+</div>
