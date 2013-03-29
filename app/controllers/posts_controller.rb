@@ -38,12 +38,12 @@ class PostsController < ApplicationController
 
 
   def update
-    @post = Post.update_attributes(params[:post])
+    @post = Post.find(params[:id])
     @categories = Category.all
 
-    if @post.save
+    if @post.update_attributes(params[:post])
       flash[:notice] = "Your post was edited."
-      redirect_to "/posts/#{post.id}"
+      redirect_to "/posts/#{@post.id}"
     else
       @post.errors
       render 'edit'
