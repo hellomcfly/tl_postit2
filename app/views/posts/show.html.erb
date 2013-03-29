@@ -1,22 +1,27 @@
 <h2 style="color:white">Title: <%= link_to @post.title, @post.url %></h2>
 <h6 style="color:white">Submitted by: <%= link_to @post.user.name, "/users/#{@post.user.id}" %> on <%= disp_date(@post.created_at) %></p></h6>
+<h6 style="color:white"><%= link_to "Edit post", "/posts/#{@post.id}/edit" %></h6>
 <hr>
 <div class= "well well-small">
 	<h6><u>Description:</u> <%= @post.body %></h6>
 </div>
+
 <div class= "well well-small">
 <h4>Have something to say?</h4>
-<%= form_for [@post, @comment] do |f| %>
-	<%= render 'shared/errors', obj: @comment %>
-	<%= f.label "Body:" %>
-	<%= f.text_area :body, rows: 5 %>
-	<br>
-	<%= f.label "User:" %>
-	<%= collection_select(:comment, :user_id, @users, :id, :name) %>
-	<br>
-	<%= f.submit "Leave Your Comment", class: "btn btn-primary" %>
+<% if logged_in? %>
+	<%= form_for [@post, @comment] do |f| %>
+		<%= render 'shared/errors', obj: @comment %>
+		<%= f.label "Body:" %>
+		<%= f.text_area :body, rows: 5 %>
+		<br>
+		<p>Commenting as <i><%= @current_user.name %></i></p>
+		<%= f.submit "Leave Your Comment", class: "btn btn-primary" %>
+	<% end %>
+<% else %>
+	<%= link_to 'Create an Account', register_path , class: "btn btn-primary" %>
 <% end %>
 </div>
+
 <div class= "well well-small"
 <h6>Comments:</h6>
 <ol>

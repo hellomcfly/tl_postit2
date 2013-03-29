@@ -9,26 +9,45 @@ class PostsController < ApplicationController
   def show
   	@post = Post.find(params[:id])
     @comment = @post.comments.build
-    @users = User.all
+    @comment.user = current_user
   end
 
   def new
   	@post = Post.new
-  	@users = User.all    
+    @categories = Category.all
   end
 
   def create
-  	@post = Post.new(params[:post])
+    @post = Post.new(params[:post])
     @post.user = current_user
-  	@users = User.all    
+    @categories = Category.all
 
   	if @post.save
   		flash[:notice] = "Your post was created."
-  		redirect_to posts_path
+  		redirect_to "/posts/#{@post.id}"
   	else
   		@post.errors
   		render 'new'
   	end
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+    @categories = Category.all
+  end
+
+
+  def update
+    @post = Post.update_attributes(params[:post])
+    @categories = Category.all
+
+    if @post.save
+      flash[:notice] = "Your post was edited."
+      redirect_to "/posts/#{post.id}"
+    else
+      @post.errors
+      render 'edit'
+    end
   end
 
 end
