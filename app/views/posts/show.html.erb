@@ -1,6 +1,6 @@
 <h2 style="color:white">Title: <%= link_to @post.title, @post.url %></h2>
 <h6 style="color:white">Submitted by: <%= link_to @post.user.name, "/users/#{@post.user.id}" %> on <%= disp_date(@post.created_at) %></p></h6>
-<% if current_user.id !=nil && current_user.id == @post.user.id %>
+<% if logged_in? and current_user.id == @post.user.id %>
 	<h6 style="color:white"><%= link_to "Edit post", "/posts/#{@post.id}/edit" %></h6>
 <% end %>
 
