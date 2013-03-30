@@ -4,7 +4,11 @@
 		<p><h4><%= link_to post.title, ext_url(post.url) %></h4>
 			<p><u>Description:</u> <%= post.body %></p>
 			<i>Posted by</i> <%= link_to post.user.name, "/users/#{post.user.id}" %> on <%= disp_date(post.created_at) %></p>
-		<p><i><%= link_to "View #{post.comments.count} comments", "/posts/#{post.id}" %></i><p>
+		<i><%= link_to "View #{post.comments.count} comments", "/posts/#{post.id}" %></i><br>
+		<p style="font-size:10px">Categories: <%post.categories.each do |cat| %>
+			<%= cat.title%>;
+		<% end %>
+		</p>
 	</div>
 <% end %>
 
