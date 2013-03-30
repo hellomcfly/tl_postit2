@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   before_filter :require_user, except: [:index, :show]
+  before_filter :can_edit, only: [:edit]
 
   def index
   	@posts = Post.all

@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def can_edit
+    @post = Post.find(params[:id])
     unless current_user.id == @post.user.id
       flash[:error] = "You're not allowed to do that."
       redirect_to login_path

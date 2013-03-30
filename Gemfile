@@ -23,7 +23,6 @@ group :development do
   gem 'sqlite3'
   gem 'pry'
   gem 'quiet_assets'
-  gem 'thin'
 end
 
 group :production do
