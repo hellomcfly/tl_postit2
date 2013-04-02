@@ -16,4 +16,18 @@ class CommentsController < ApplicationController
   	end
   end
 
+  def vote
+    @vote = Vote.create(voteable: @comment, user: current_user, vote: params[:vote]) 
+
+      if @vote.vote == false
+        flash[:alert] = "Downvote tallied!"
+        redirect_to :back
+      else
+        flash[:success] = "Upvote tallied!"
+        redirect_to :back
+      end
+
+  end
+
+
 end

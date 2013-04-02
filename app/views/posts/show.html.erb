@@ -26,9 +26,11 @@
 
 <div class= "well well-small"
 <h6>Comments:</h6>
-<ol>
-	<% @post.comments.reload.each do |comment| %>
-		<li><%= comment.body %> - <%= link_to comment.user.name, "/users/#{comment.user_id}" %></li>
-	<% end %>	
-</ol>
+<% @comments.each do |comment| %>
+	<div class= "well well-small">
+	Comment score: <%= comment.net_votes %>
+		(<%= link_to "Vote Up", vote_post_comment_path(comment, vote: true), method: 'post' %> ; <%= link_to "Vote Down", vote_post_comment_path(comment, vote: false), method: 'post' %>)
+		<br><%= comment.body %> - <%= link_to comment.user.name, "/users/#{comment.user_id}" %>
+	</div>
+<% end %>	
 </div>

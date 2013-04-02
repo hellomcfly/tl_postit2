@@ -13,6 +13,7 @@ class PostsController < ApplicationController
   def show
     @comment = @post.comments.build
     @comment.user = current_user
+    @comments = @post.comments.reload.all
   end
 
   def new
