@@ -53,13 +53,8 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        if @vote.vote == false
-          flash[:alert] = "Downvote tallied!"
-          redirect_to :back
-        else
-          flash[:success] = "Upvote tallied!"
-          redirect_to :back
-        end
+        flash[:success] = "Vote tallied!"
+        redirect_to :back
       end
       format.js
     end    
