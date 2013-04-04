@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+    before_filter :require_user
 
     def create
     @post = Post.find(params[:post_id])
@@ -17,15 +18,16 @@ class CommentsController < ApplicationController
   end
 
   def vote
+    @comment = Comment.find(params[:id])
     @vote = Vote.create(voteable: @comment, user: current_user, vote: params[:vote]) 
 
-      if @vote.vote == false
-        flash[:alert] = "Downvote tallied!"
-        redirect_to :back
-      else
-        flash[:success] = "Upvote tallied!"
+    respond_to do |format|
+      format.html do
+        flash[:success] = "Vote tallied!"
         redirect_to :back
       end
+      format.js
+    end    
 
   end
 

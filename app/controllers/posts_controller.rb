@@ -4,7 +4,6 @@ class PostsController < ApplicationController
   before_filter :can_edit, only: [:edit]
   before_filter :find_post, only: [:show, :edit, :update, :vote]
   before_filter :all_cats, only: [:new, :create, :edit, :update]
-  before_filter :current_user, only: :vote
 
   def index
   	@posts = Post.all
