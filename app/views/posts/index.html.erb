@@ -9,11 +9,13 @@
 			<%= cat.title%>;	
 		<% end %>
 		</p>
-	Net votes: <span id="post_<%=post.id%>_votes"><%= post.net_votes %></span>
-	<ul>
-		<li><%= link_to "Vote Up", vote_post_path(post, vote: true), method: 'post', remote: true %></li>
-		<li><%= link_to "Vote Down", vote_post_path(post, vote: false), method: 'post', remote: true %></li>
-	</ul>	
+		Net votes: <span id="post_<%=post.id%>_votes"><%= post.net_votes %></span>
+		<% if logged_in? %>
+			<ul>
+				<li><%= link_to "Vote Up", vote_post_path(post, vote: true), method: 'post', remote: true %></li>
+				<li><%= link_to "Vote Down", vote_post_path(post, vote: false), method: 'post', remote: true %></li>
+			</ul>
+		<% end %>
 	</div>
 <% end %>
 

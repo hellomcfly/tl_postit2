@@ -28,8 +28,10 @@
 <h6>Comments:</h6>
 <% @comments.each do |comment| %>
 	<div class= "well well-small">
-	Comment score: <span id="comment_<%= comment.id %>_votes"><%= comment.net_votes %></span>
-		(<%= link_to "Vote Up", vote_post_comment_path(comment.post, comment, vote: true), method: 'post', remote: true %> ; <%= link_to "Vote Down", vote_post_comment_path(comment.post, comment, vote: false), method: 'post', remote: true %>)
+		Comment score: <span id="comment_<%= comment.id %>_votes"><%= comment.net_votes %></span>
+		<% if logged_in? %>
+			(<%= link_to "Vote Up", vote_post_comment_path(comment.post, comment, vote: true), method: 'post', remote: true %> ; <%= link_to "Vote Down", vote_post_comment_path(comment.post, comment, vote: false), method: 'post', remote: true %>)
+		<% end %>	
 		<br><%= comment.body %> - <%= link_to comment.user.name, "/users/#{comment.user_id}" %>
 	</div>
 <% end %>	
